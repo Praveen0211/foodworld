@@ -117,8 +117,21 @@
               "devServerTarget": "FoodWorld:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "https://Praveen0211.github.io/foodworld/",
+            "repo": "https://github.com/Praveen0211/foodworld.git",
+            "name": "Praveen",
+            "email": "praveen.chandran02111995@gmail.com" 
+          }
         }
       }
-    }},
-  "defaultProject": "FoodWorld"
+    }
+  },
+  "defaultProject": "FoodWorld",
+  "cli": {
+    "analytics": "10472a7b-946a-4e90-a447-0cb90609e9cb"
+  }
 }
