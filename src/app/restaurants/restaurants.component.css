@@ -1,0 +1,113 @@
+div {
+    padding: 0%;
+}
+
+.main {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.title {
+    position: relative;
+    height: 10%;
+    width: 100%;
+    font-size: 2vw;
+    font-weight: bold;
+    padding: 1vh 1vw;
+    color: rgb(37, 52, 71);
+}
+
+.contentBox {
+    position: relative;
+    height: 90%;
+    width: 100%;
+    padding: 2vh 2vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow: auto;
+}
+
+.contentBox::-webkit-scrollbar {
+    width: 1vw;
+}
+
+.contentBox::-webkit-scrollbar-thumb {
+    background-color: rgb(37, 52, 71);
+    border-radius: 0.5vw;
+}
+
+.contentBoxItem {
+    height: 60%;
+    width: 33%;
+    padding: 1vw;
+}
+
+.content {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    border: 0.1vh solid rgb(28, 41, 55);
+    border-radius: 1.5vw;
+}
+
+.contentRName {
+    height: 10%;
+    font-size: 1.2vw;
+    font-weight: bold;
+    color: white;
+    padding-top: 1vh;
+    padding-left: 1.5vw;
+    background-color: rgb(37, 52, 71);
+    border-top-left-radius: 1.5vw;
+    border-top-right-radius: 1.5vw;
+}
+
+.contentRLocality {
+    height: 10%;
+    font-size: 1vw;
+    padding-left: 1.5vw;
+    padding-bottom: 1vh;
+    color: white;
+    background-color: rgb(37, 52, 71);
+}
+
+.contentRDetailsBox {
+    height: 80%;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+}
+
+.contentRImageContainer {
+    height: 100%;
+    width: 65%;
+}
+
+.contentRImage {
+    height: 100%;
+    width: 100%;
+    border-bottom-left-radius: 1.5vw;
+}
+
+.contentRInfoContainer {
+    position: relative;
+    height: 100%;
+    width: 35%;
+    padding: 1vh 0.4vw
+}
+
+.contentRCuisines, .contentRRatings, .contentRPricing {
+    font-size: 1vw;
+    margin-bottom: 2vh;
+}
+
+.contentRMenu {
+    position: absolute;
+    width: 100%;
+    bottom: 1vw;
+    font-size: 1vw;
+    font-weight: bold;
+    text-align: center;
+}

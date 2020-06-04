@@ -1,1 +1,51 @@
-<p>restaurants works!</p>
+<div class="main">
+    <div class="title">
+        <div>Restaurants near you...</div>
+    </div>
+    <div class="contentBox">
+        <!-- {{zomatoAreaSearchResults.nearby_restaurants[0].restaurant.name}}
+        <br>
+        {{zomatoAreaSearchResults.nearby_restaurants[0].restaurant.location.address}}
+        <br>
+        {{zomatoAreaSearchResults.nearby_restaurants[0].restaurant.location.locality}}
+        <br>
+        {{zomatoAreaSearchResults.nearby_restaurants[0].restaurant.cuisines}}
+        <br>
+        {{zomatoAreaSearchResults.nearby_restaurants[0].restaurant.currency}}{{zomatoAreaSearchResults.nearby_restaurants[0].restaurant.average_cost_for_two}}
+        <br>
+        {{zomatoAreaSearchResults.nearby_restaurants[0].restaurant.offers}}
+        <br>
+        {{zomatoAreaSearchResults.nearby_restaurants[0].restaurant.thumb}}
+        <br>
+        {{zomatoAreaSearchResults.nearby_restaurants[0].restaurant.user_rating | json}}
+        <br>
+        {{zomatoAreaSearchResults.nearby_restaurants[0].restaurant.menu_url}} -->
+        <div class="contentBoxItem" *ngFor="let restaurant of zomatoLoadingRestaurants?.restaurantList">
+            <div class="content">
+                <div class="contentRName">{{restaurant.restaurant.name}}</div>
+                <div class="contentRLocality">{{restaurant.restaurant.location.locality}}</div>
+                <div class="contentRDetailsBox">
+                    <div class="contentRImageContainer">
+                        <img src={{restaurant.restaurant.thumb}} alt="Restaurant Image" class="contentRImage">
+                    </div>
+                    <div class="contentRInfoContainer">
+                        <div class="contentRCuisines">
+                            <b>Cuisines:</b>
+                            {{restaurant.restaurant.cuisines}}
+                        </div>
+                        <div class="contentRRatings">
+                            <b>Ratings:</b>
+                            {{restaurant.restaurant.user_rating.aggregate_rating}}
+                        </div>
+                        <div class="contentRMenu"></div>
+                        <div class="contentRPricing">
+                            <b>Average cost for two:</b>
+                            {{restaurant.restaurant.currency}}{{restaurant.restaurant.average_cost_for_two}}                      
+                        </div>
+                        <div class="contentRMenu"><a href={{restaurant.restaurant.menu_url}}>MENU</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
