@@ -12,8 +12,22 @@ export class RestaurantEffects {
     getLoadingRestaurantsSuccess = createEffect(() => this.actions.pipe(
         ofType(RestaurantActions.GetLoadingRestaurants),
         mergeMap((action) => this.zomatoService.getLoadingRestaurants(action).pipe(
-            map((result) => RestaurantActions.GetLoadingRestaurantsSuccess({payload: result}))
-       ))
-    ))
+            map((result) => RestaurantActions.GetLoadingRestaurantsSuccess({ payload: result }))
+        ))
+    ));
+
+    getLocationListSuccess = createEffect(() => this.actions.pipe(
+        ofType(RestaurantActions.GetLocationList),
+        mergeMap((action) => this.zomatoService.getLocationList(action).pipe(
+            map((result) => RestaurantActions.GetLocationListSuccess({ payload: result }))
+        ))
+    ));
+
+    getSearchResultsSuccess = createEffect(() => this.actions.pipe(
+        ofType(RestaurantActions.GetSearchResults),
+        mergeMap((action) => this.zomatoService.getSearchResults(action).pipe(
+            map((result) => RestaurantActions.GetSearchResultsSuccess({ payload: result }))
+        ))
+    ));
 }
 

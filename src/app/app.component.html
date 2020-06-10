@@ -1,19 +1,118 @@
 <div class="main">
   <div class="appContainer">
     <div id="appNavbar">
-      <div class="appNavbarLogo"></div>
+      <!-- <div class="appNavbarLogo"></div> -->
       <div class="appNavbarCard">
         <span routerLink="/restaurants" style="color: white; font-size: 1.6vw; padding-left: 2vw;">View</span>
       </div>
     </div>
     <div id="appBody">
-      <div class="appHeader row">
-        <fa-icon *ngIf="!navbarExpanded" class="appHeadIcon" [icon]="faChevronCircleRightIcon" (click)="expand()">
-        </fa-icon>
-        <fa-icon *ngIf="navbarExpanded" class="appHeadIcon" [icon]="faChevronCircleLeftIcon" (click)="collapse()">
-        </fa-icon>
-        <div class="title">
-          <div>Food Zone</div>
+      <div class="appBodyOverlay" [hidden]="signInComponentHidden == true && signUpComponentHidden == true"></div>
+      <div class="signInSignUpContainer">
+        <div class="signInComponent" [hidden]="signInComponentHidden">
+          <div class="signInHeading">Sign In</div>
+          <span class="signInSignUpClose" (click)="hideOverlay()">x</span>
+          <form [formGroup]="signInForm" (ngSubmit)="signIn()">
+            <div class="form-group">
+              <input type="text" formControlName="username" class="form-control authInput" placeholder="Enter Username">
+              <div class="inputError">
+                <div
+                  *ngIf="signInForm.controls.username.errors && (signInForm.controls.username.touched || signInForm.controls.username.dirty)">
+                  Field Required
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="password" formControlName="password" class="form-control authInput"
+                placeholder="Enter Password">
+              <div class="inputError">
+                <div
+                  *ngIf="signInForm.controls.password.errors && (signInForm.controls.password.touched || signInForm.controls.password.dirty)">
+                  Field Required
+                </div>
+              </div>
+            </div>
+            <div class="buttonContainer">
+              <button class="btn btn-success" [disabled]="signInForm.invalid">Sign In</button>
+              <div class="inputError">
+                <span *ngIf="signInErrorMessage != undefined">{{ signInErrorMessage }}</span>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="signUpComponent" [hidden]="signUpComponentHidden">
+          <div class="signUpHeading">Sign Up</div>
+          <span class="signInSignUpClose" (click)="hideOverlay()">x</span>
+          <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
+            <div class="form-group">
+              <input type="text" formControlName="fullname" class="form-control authInput"
+                placeholder="Enter Full Name">
+              <div class="inputError">
+                <div
+                  *ngIf="signUpForm.controls.fullname.errors && (signUpForm.controls.fullname.touched || signUpForm.controls.fullname.dirty)">
+                  Field Required
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" formControlName="username" class="form-control authInput" placeholder="Enter Username">
+              <div class="inputError">
+                <div
+                  *ngIf="signUpForm.controls.username.errors && (signUpForm.controls.username.touched || signUpForm.controls.username.dirty)">
+                  Field Required
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="email" formControlName="email" class="form-control authInput" placeholder="Enter Email ID">
+              <div class="inputError">
+                <div
+                  *ngIf="signUpForm.controls.email.errors && (signUpForm.controls.email.touched || signUpForm.controls.email.dirty)">
+                  <div *ngIf="signUpForm.controls.email.errors.required">Field Required</div>
+                  <div *ngIf="signUpForm.controls.email.errors.email">Enter valid Email ID</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="password" formControlName="password" class="form-control authInput"
+                placeholder="Enter Password">
+              <div class="inputError">
+                <div
+                  *ngIf="signUpForm.controls.password.errors && (signUpForm.controls.password.touched || signUpForm.controls.password.dirty)">
+                  Field Required
+                </div>
+              </div>
+            </div>
+            <div class="buttonContainer">
+              <button class="btn btn-success" [disabled]="signUpForm.invalid">Sign Up</button>
+              <div class="inputError">
+                <span *ngIf="signUpErrorMessage != undefined">{{ signUpErrorMessage }}</span>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div id="loadingImage">
+        <span id="signIn">
+          <span *ngIf="signedInUser.username == undefined" (click)="toggleSignIn()">Sign In</span>
+          <span *ngIf="signedInUser.username != undefined">{{ signedInUser.username }}</span>
+        </span>
+        <span id="signUp">
+          <span *ngIf="signedInUser.username == undefined" (click)="toggleSignUp()">Sign Up</span>
+          <span *ngIf="signedInUser.username != undefined" (click)="signOut()">Sign Out</span>
+        </span>
+        <div id="appName">Food World</div>
+        <div id="locationSearchBar">
+          <input type="text" class="form-control locationSearchInput" [(ngModel)]="locationSearchInput"
+            placeholder="Enter a locality" (input)="getLocationList()">
+          <div class="locationSearchSubmit" (click)="showSearchedResults()">
+            <fa-icon class="searchIcon" [icon]="faSearchIcon" (click)="showSearchedResults()"></fa-icon>
+          </div>
+        </div>
+        <div id="locationSearchSuggestions" [hidden]="suggestionsHidden || locationSearchInput == '' || locationList.length == 0">
+          <div *ngFor="let location of locationList; let i = index">
+            <div class="locationItem" (click)="selectLocation(i)">{{ location.title }}</div>
+          </div>
         </div>
       </div>
       <div class="appBodyContent">
@@ -22,3 +121,13 @@
     </div>
   </div>
 </div>
+
+<!-- <div class="appHeader row">
+        <fa-icon *ngIf="!navbarExpanded" class="appHeadIcon" [icon]="faChevronCircleRightIcon" (click)="expand()">
+        </fa-icon>
+        <fa-icon *ngIf="navbarExpanded" class="appHeadIcon" [icon]="faChevronCircleLeftIcon" (click)="collapse()">
+        </fa-icon>
+        <div class="title">
+          <div>Food Zone</div>
+        </div>
+      </div> -->

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ZomatoService } from './../services/zomato.service';
 import { Store } from '@ngrx/store';
 import * as RestaurantActions from '../store/actions/RestaurantActions';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-restaurants',
@@ -10,15 +10,30 @@ import * as RestaurantActions from '../store/actions/RestaurantActions';
 })
 export class RestaurantsComponent implements OnInit {
 
+  entity;
   zomatoLoadingRestaurants;
-  constructor(private zomatoService: ZomatoService, private store:Store<{restaurants}>) { }
+  loadingCollapsed;
+  lat; lon;
+
+  constructor(
+    private store: Store<{ restaurants, variables }>,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) { }
 
   ngOnInit() {
-    this.store.select(obj => obj.restaurants).subscribe((result) => {
-      this.zomatoLoadingRestaurants = result;
-      console.log(this.zomatoLoadingRestaurants)
+    this.store.select(obj => obj).subscribe((result) => {
+      this.zomatoLoadingRestaurants = result.restaurants;
+      this.loadingCollapsed = result.variables.loadingCollapsed;
+      this.lat = result.variables.location.lat;
+      this.lon = result.variables.location.lon;
+      console.log(this.zomatoLoadingRestaurants.restaurantList);
     });
-    this.store.dispatch(RestaurantActions.GetLoadingRestaurants({"payload": {"lat": "12.833366", "lon": "77.647140"}}))
+    this.activatedRoute.params.subscribe(params => {
+      this.entity = params.locality;
+      console.log(this.entity);
+      this.store.dispatch(RestaurantActions.GetSearchResults({ "payload": { "entity_id": this.entity, "lat": this.lat, "lon": this.lon } }));
+    });
   }
 
 }

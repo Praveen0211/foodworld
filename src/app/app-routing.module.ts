@@ -4,7 +4,7 @@ import { RestaurantsComponent } from './restaurants/restaurants.component';
 
 
 const routes: Routes = [
-  { path: "restaurants", component: RestaurantsComponent }
+  { path: "restaurants/:locality", component: RestaurantsComponent }
 ];
 
 @NgModule({
