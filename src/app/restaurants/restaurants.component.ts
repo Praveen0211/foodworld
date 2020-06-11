@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as RestaurantActions from '../store/actions/RestaurantActions';
 import { ActivatedRoute, Router } from '@angular/router';
+import { faStar, faPhone, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-restaurants',
@@ -15,6 +16,10 @@ export class RestaurantsComponent implements OnInit {
   loadingCollapsed;
   lat; lon;
 
+  faStarIcon = faStar;
+  faCartIcon = faShoppingCart;
+  faCallIcon = faPhone;
+
   constructor(
     private store: Store<{ restaurants, variables }>,
     private router: Router,
@@ -27,11 +32,9 @@ export class RestaurantsComponent implements OnInit {
       this.loadingCollapsed = result.variables.loadingCollapsed;
       this.lat = result.variables.location.lat;
       this.lon = result.variables.location.lon;
-      console.log(this.zomatoLoadingRestaurants.restaurantList);
     });
     this.activatedRoute.params.subscribe(params => {
       this.entity = params.locality;
-      console.log(this.entity);
       this.store.dispatch(RestaurantActions.GetSearchResults({ "payload": { "entity_id": this.entity, "lat": this.lat, "lon": this.lon } }));
     });
   }

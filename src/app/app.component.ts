@@ -176,8 +176,10 @@ export class AppComponent implements OnInit {
   }
 
   showSearchedResults = function () {
-    this.collapseLoading();
-    this.router.navigate(["restaurants/", this.selectedLocation]);
+    if (this.selectedLocation != undefined){
+      this.collapseLoading();
+      this.router.navigate(["restaurants/", this.selectedLocation]);
+    }
   }
 
   collapseLoading = function () {

@@ -6,27 +6,30 @@ div {
     position: relative;
     height: 100%;
     width: 100%;
+    background-color: rgb(243, 243,  243);
 }
 
-.title {
-    position: relative;
-    height: 10%;
-    width: 100%;
-    font-size: 2vw;
-    font-weight: bold;
-    padding: 1vh 1vw;
-    color: rgb(37, 52, 71);
+.sortFilterBox {
+    position: sticky;
+    top: 0vh;
+    left: 0%;
+    min-height: 92vh;
+    width: 18%;
+    padding: 2vh;
 }
 
 .contentBox {
-    position: relative;
-    height: 90%;
-    width: 100%;
-    padding: 2vh 2vw;
+    position: absolute;
+    top: 0vh;
+    left: 18%;
+    min-height: 92vh;
+    width: 82%;
+    padding: 2vh 1vw;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     overflow: auto;
+    background-color: rgb(243, 243,  243);
 }
 
 .contentBox::-webkit-scrollbar {
@@ -39,75 +42,139 @@ div {
 }
 
 .contentBoxItem {
-    height: 60%;
-    width: 33%;
-    padding: 1vw;
+    height: 55vh;
+    width: 50%;
+    padding: 1.5vh;
 }
 
 .content {
     height: 100%;
     width: 100%;
     background-color: white;
-    border: 0.1vh solid rgb(28, 41, 55);
-    border-radius: 1.5vw;
+    border: 0.1vh solid rgb(220, 220, 220);
+    border-radius: 0.4vw;
 }
 
-.contentRName {
-    height: 10%;
-    font-size: 1.2vw;
-    font-weight: bold;
-    color: white;
-    padding-top: 1vh;
-    padding-left: 1.5vw;
-    background-color: rgb(37, 52, 71);
-    border-top-left-radius: 1.5vw;
-    border-top-right-radius: 1.5vw;
-}
-
-.contentRLocality {
-    height: 10%;
-    font-size: 1vw;
-    padding-left: 1.5vw;
+.contentHeader {
+    height: calc(35% - 2vh);
+    width: calc(100% - 4vh);
+    margin: 2vh;
+    margin-bottom: 0vh;
     padding-bottom: 1vh;
-    color: white;
-    background-color: rgb(37, 52, 71);
-}
-
-.contentRDetailsBox {
-    height: 80%;
-    padding: 0;
+    border-bottom: 0.1vh solid rgb(220, 220, 220);
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
-.contentRImageContainer {
+.imageBox {
+    width: 20%;
     height: 100%;
-    width: 65%;
 }
 
-.contentRImage {
+.imageBox img {
     height: 100%;
     width: 100%;
-    border-bottom-left-radius: 1.5vw;
+    border-radius: 0.2vw;
 }
 
-.contentRInfoContainer {
-    position: relative;
+.mainDetailsBox {
+    width: 80%;
     height: 100%;
-    width: 35%;
-    padding: 1vh 0.4vw
+    padding-left: 1vw;
 }
 
-.contentRCuisines, .contentRRatings, .contentRPricing {
+.resName {
+    font-size: 1.4vw;
+    font-weight: bolder;
+    color: rgb(37, 52, 71);
+    transform: scaleY(1.2);
+}
+
+.resRatings {
+    height: 1.5vh;
+    font-size: 0.9vw;
+    color: darkgray;
+    margin-bottom: 3vh;
+}
+
+.starIcon {
+    color: gold;
+}
+
+.resLocality {
     font-size: 1vw;
-    margin-bottom: 2vh;
+    font-weight: bolder;
 }
 
-.contentRMenu {
-    position: absolute;
+.contentBody {
+    height: 50%;
     width: 100%;
-    bottom: 1vw;
+    font-size: 1vw;
+    padding: 1.5vh 1vw;
+    border-bottom: 0.1vh solid rgb(220, 220, 220);
+}
+
+.contentBody table {
+    width: 100%;
+    height: 100%;
+}
+
+.title {
+    color: darkgray;
+    width: 20%;
+    font-size: 0.9vw;
+}
+
+.info {
+    width: 80%;
+    font-size: 0.9vw;
+    padding-left: 1vw;
+}
+
+.contentFooter {
+    height: 15%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.contentButtonCall, .contentButtonOrder {
+    height: 100%;
+    width: 33%;
     font-size: 1vw;
     font-weight: bold;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contentButtonCall {
+    color: rgb(80, 80, 80);
+    border-right: 0.1vh solid rgb(220, 220, 220);
+}
+
+.contentButtonCall:hover {
+    background-color: rgb(245, 245, 245);
+}
+
+.contentButtonOrder {
+    color: white;
+    background-color: rgb(9, 128, 68);
+}
+
+.contentButtonOrder:hover {
+    background-color: rgb(9, 158, 68);
+}
+
+.callIcon {
+    font-size: 1vw;
+    color: rgb(80, 80, 80);
+}
+
+.cartIcon {
+    font-size: 1vw;
+    color: white;
 }
